@@ -1,0 +1,10 @@
+Frequently Asked Questions
+
+How do I run the program?
+
+Do I need to select all dropdown menu options?
+
+What files can I use?
+This application only accepts CSV or Excel files. A warning will appear if your file is in the wrong format.
+
+Why do URLs return "no index/no follow"?
