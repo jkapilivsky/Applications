@@ -22,14 +22,16 @@ class Window(QMainWindow):
         self.btn_functionality()
         self.nav_functionality()
 
-        self.MainWindow = QMainWindow()
-        self.ui = Ui_MainWindow()
-        self.ui.setupUi(self.MainWindow)
+
         self.MainWindow.show()
 
 
     def btn_functionality(self):
-        pass
+        self.MainWindow = QMainWindow()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self.MainWindow)
+
+        self.ui.pushButton_Run.clicked.connect(lambda: self.run)
 
 
     def nav_functionality(self):
