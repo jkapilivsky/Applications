@@ -1,0 +1,5 @@
+Name: UAT Application
+Version: 0.3
+Description: Automate the UAT progress by scraping data from our web domains based on user input files.
+Built by: Jamie Kapilivsky
+Last build date: June 5th 2018

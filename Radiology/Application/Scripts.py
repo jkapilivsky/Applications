@@ -21,8 +21,9 @@ class ExcelData:
 class MRI_Writer():
     def __init__(self, excel_file):
         self.data = ExcelData(excel_file).open_excel()
+        self.page_count = 0
 
-    def create_reports(self):
+    def create_reports(self, update_progressbar):
         patient_amount = len(self.data)
 
         for reports in range(1, patient_amount):
@@ -137,3 +138,12 @@ class MRI_Writer():
                 os.makedirs(folder)
 
             document.save(folder + self.data[reports][0] + " " + date_of_exam + '.docx')
+
+            # Page counter
+            self.page_count += 1
+
+            # Get percentage of progress through for loop. url-1 to remove headers
+            update_progressbar(self.page_count / (patient_amount - 1))
+
+            # Reset page count
+        self.page_count = 0

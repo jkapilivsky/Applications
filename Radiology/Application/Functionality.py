@@ -52,8 +52,35 @@ class Window(QMainWindow):
 
 
     def nav_functionality(self):
-        pass
+        self.ui.actionNew.triggered.connect(self.new_project)
+        self.ui.actionOpen.triggered.connect(self.file_path)
+        self.ui.actionRun.triggered.connect(self.get_comboBox_info)
+        self.ui.actionQuit.triggered.connect(lambda: QApplication.quit())
 
+        self.ui.actionFAQ.triggered.connect(self.project_FAQ)
+        self.ui.actionAbout.triggered.connect(self.project_about)
+        self.ui.actionHow_To_Run.triggered.connect(self.how_to_run)
+
+    def new_project(self):
+        self.ui.textEdit.setText('')
+        self.ui.progressBar.setValue(0)
+        self.ui.label_excel_name.setText('Excel file')
+        self.file_path()
+
+    def project_FAQ(self):
+        faq_file = open('txt_files/FAQ.txt', 'r')
+        faq = faq_file.read()
+        self.ui.textEdit.setText(faq)
+
+    def project_about(self):
+        about_file = open('txt_files/About.txt', 'r')
+        about = about_file.read()
+        self.ui.textEdit.setText(about)
+
+    def how_to_run(self):
+        howtorun_file = open('txt_files/HowToRun.txt', 'r')
+        howto = howtorun_file.read()
+        self.ui.textEdit.setText(howto)
 
     def go_to_folder(self):
         folder = 'Reports/' + str(datetime.date.today()) + '/'
@@ -64,13 +91,6 @@ class Window(QMainWindow):
         folder = folder.replace('/', '\\')
         subprocess.Popen(r"explorer /select," + dir_path + '\\' + folder)
 
-
-    def project_FAQ(self):
-        pass
-
-
-    def project_about(self):
-        pass
 
     def file_path(self):
         path = QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME'),
@@ -96,6 +116,7 @@ class Window(QMainWindow):
             self.ui.label_excel_name.setText(path[0])
             return path[0]
 
+
     @pyqtSlot()
     def get_comboBox_info(self):
         if self.ui.label_excel_name.text() == "Excel file":
@@ -117,19 +138,25 @@ class Window(QMainWindow):
         self.requestDoc.emit(file_path, self.template_select)
 
         # Todo - disable buttons! *Turn them back on in "Display page function"
+        self.ui.pushButton_Run.setEnabled(False)
+        self.ui.pushButton_GoToFolder.setEnabled(False)
+
+        self.ui.actionNew.setEnabled(False)
+        self.ui.actionOpen.setEnabled(False)
+        self.ui.actionRun.setEnabled(False)
+        self.ui.actionGo_To_Folder.setEnabled(False)
+        self.ui.actionQuit.setEnabled(False)
+
 
 
     @pyqtSlot(object)
     def display_page(self):
         # TODO - make sure all of these labels are correct
-        # self.ui.pushButton_Run.setEnabled(True)
-        # self.ui.pushButton_Clear.setEnabled(True)
-        # self.ui.pushButton_Save.setEnabled(True)
-        #
-        # self.ui.actionAbout.setEnabled(True)
-        # self.ui.actionFAQ.setEnabled(True)
-        # self.ui.actionNew.setEnabled(True)
-        # self.ui.actionOpen.setEnabled(True)
-        # self.ui.actionQuit.setEnabled(True)
-        # self.ui.actionSave.setEnabled(True)
-        pass
+        self.ui.pushButton_Run.setEnabled(True)
+        self.ui.pushButton_GoToFolder.setEnabled(True)
+
+        self.ui.actionNew.setEnabled(True)
+        self.ui.actionOpen.setEnabled(True)
+        self.ui.actionRun.setEnabled(True)
+        self.ui.actionGo_To_Folder.setEnabled(True)
+        self.ui.actionQuit.setEnabled(True)

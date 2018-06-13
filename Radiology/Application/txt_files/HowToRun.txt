@@ -1,0 +1,15 @@
+Steps to run program
+1) Select report style in the drop down menu at the bottom
+2) Click Run
+3) Select excel file with patient information
+4) Once progress bar is at 100%, select Go To Folder
+
+To run another file:
+1) Select report style in the drop down menu at the bottom
+2) Click Open from File menu (Ctrl+O)
+3) Click Run
+3) Select excel file with patient information
+4) Once progress bar is at 100%, select Go To Folder
+* Or you can just quit the app and open again and follow the first set of instructions.
+
+For more info check out the FAQ button in the help menu.

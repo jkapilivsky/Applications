@@ -17,6 +17,8 @@ class Threaded(QObject):
         results = None
 
         if template_selected == 'McAllen MRI':
-            results = MRI_Writer(excel_path).create_reports()
+            results = MRI_Writer(excel_path).create_reports(self.update_progressbar)
 
+        # TODO - Can emit it being complete?
+        # Emits None
         self.result.emit(results)
