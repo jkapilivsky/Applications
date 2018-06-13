@@ -33,7 +33,6 @@ class MRI_Writer():
             DOB = s[:-9]
             new_DOB = DOB.split(sep='-')
             final_DOB = new_DOB[1] + '/' + new_DOB[2] + '/' + new_DOB[0][2:4]
-
             exam_text = self.data[reports][2]
             exam_sec = (exam_text - 25569) * 86400.0
             exam_time = datetime.datetime.utcfromtimestamp(exam_sec)
@@ -50,7 +49,7 @@ class MRI_Writer():
 
             MRI_info = document.add_paragraph()
             MRI_info.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            MRI_info.add_run().add_picture('Assets/MRI logo.png', width=Inches(1.25))
+            MRI_info.add_run().add_picture('assets/MRI logo.png', width=Inches(1.25))
             MRI_info.add_run().add_break()
             MRI_info.add_run('McAllen MRI Center').bold = True
             MRI_info.add_run().add_break()
@@ -124,7 +123,7 @@ class MRI_Writer():
             patient_info.add_run().add_break()
             signature = document.add_paragraph('Thank you for your referral')
             signature.add_run().add_break()
-            signature.add_run().add_picture('Assets/Signature.jpg')
+            signature.add_run().add_picture('assets/Signature.jpg')
             signature.add_run().add_break()
             signature.add_run('Electronically signed by:')
             signature.add_run().add_break()
