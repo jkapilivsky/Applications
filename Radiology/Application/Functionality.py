@@ -8,6 +8,8 @@ import os
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 import pandas as pd
+import datetime
+import subprocess
 
 from Threads import Threaded
 from UI import Ui_MainWindow
@@ -46,6 +48,7 @@ class Window(QMainWindow):
         self.ui.setupUi(self.MainWindow)
 
         self.ui.pushButton_Run.clicked.connect(self.get_comboBox_info)
+        self.ui.pushButton_GoToFolder.clicked.connect(self.go_to_folder)
 
 
     def nav_functionality(self):
@@ -53,7 +56,13 @@ class Window(QMainWindow):
 
 
     def go_to_folder(self):
-        pass
+        folder = 'Reports/' + str(datetime.date.today()) + '/'
+        if not os.path.exists(folder):
+            os.makedirs(folder)
+
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        folder = folder.replace('/', '\\')
+        subprocess.Popen(r"explorer /select," + dir_path + '\\' + folder)
 
 
     def project_FAQ(self):
